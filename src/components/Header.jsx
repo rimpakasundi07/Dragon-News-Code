@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/logo.png";
+import { format } from "date-fns";
 
 const Header = () => {
   return (
@@ -8,8 +9,8 @@ const Header = () => {
       <p className="text-center text-accent">
         Journalism Without Fear or Favour
       </p>
-      <p className="text-center text-accent">
-        <span className="font-bold text-black">Sunday</span> , November 27, 2025
+      <p className="font-bold text-center">
+        {format(new Date(), "EEEE , MMMM dd , yyyy")}
       </p>
     </div>
   );
