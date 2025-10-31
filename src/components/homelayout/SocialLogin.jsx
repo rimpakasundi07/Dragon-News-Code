@@ -1,4 +1,6 @@
 import React from "react";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 const SocialLogin = () => {
   return (
@@ -6,11 +8,11 @@ const SocialLogin = () => {
       <h2 className="font-bold mb-5">Login with</h2>
       <div className="space-y-3">
         <button className="btn  btn-outline btn-secondary w-full">
-          Login with Google
+          <FcGoogle size={24} /> Login with Google
         </button>{" "}
         <br></br>
         <button className="btn  btn-outline btn-primary  w-full">
-          Login with Github
+          <FaGithub size={24} /> Login with Github
         </button>
       </div>
     </div>
