@@ -4,6 +4,10 @@ const NewsCard = ({ news }) => {
   const { title, rating, total_view, author, thumbnail_url, details, tags } =
     news;
 
+  const formattedDate = new Date(
+    news.author.published_date
+  ).toLocaleDateString();
+
   return (
     <div className="card bg-base-100 shadow-xl border border-base-200">
       {/* Author Info */}
@@ -16,9 +20,7 @@ const NewsCard = ({ news }) => {
           />
           <div>
             <p className="font-semibold text-sm">{author.name}</p>
-            <p className="text-xs text-gray-500">
-              {new Date(author.published_date).toDateString()}
-            </p>
+            <p className="text-xs text-gray-500">{formattedDate}</p>
           </div>
         </div>
         <div className="badge badge-secondary capitalize">{rating.badge}</div>
