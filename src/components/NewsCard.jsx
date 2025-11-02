@@ -9,9 +9,9 @@ const NewsCard = ({ news }) => {
   ).toLocaleDateString();
 
   return (
-    <div className="card bg-base-100 shadow-xl border border-base-200">
+    <div className="card bg-base-100 shadow-xl rounded-2xl ">
       {/* Author Info */}
-      <div className="flex items-center justify-between p-4 border-b">
+      <div className="flex bg-base-200 items-center justify-between p-4 border-b">
         <div className="flex items-center gap-3">
           <img
             src={author.img}
