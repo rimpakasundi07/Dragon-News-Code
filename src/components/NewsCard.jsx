@@ -38,7 +38,18 @@ const NewsCard = ({ news }) => {
       {/* Content */}
       <div className="card-body">
         <h2 className="card-title leading-snug">{title}</h2>
-        <p className="text-gray-600 text-sm line-clamp-4">{details}</p>
+        <div className="px-4 text-accent">
+          {details.length > 200 ? (
+            <>
+              {details.slice(0, 200)}...
+              <span className="text-primary font-semibold cursor-pointer hover:underline">
+                Read More
+              </span>
+            </>
+          ) : (
+            details
+          )}
+        </div>
 
         {/* Tags */}
         <div className="mt-2 flex flex-wrap gap-2">
