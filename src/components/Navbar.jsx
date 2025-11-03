@@ -4,7 +4,17 @@ import userIcon from "../assets/user.png";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, logOut } = use(AuthContext);
+  const handleLogOut = () => {
+    console.log("User trying to Logout");
+    logOut()
+      .then(() => {
+        alert("You logged Out Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="flex justify-between items-center py-10">
       <div className="">{user && user.email}</div>
@@ -15,13 +25,23 @@ const Navbar = () => {
       </div>
       <div className="login-btn flex justify-center gap-4 items-center">
         <img src={userIcon} alt="" />
-        <Link
-          to="/auth/login"
-          className="bg-gray-600 btn rounded px-5 py-2 font-bold text-white
+        {user ? (
+          <button
+            onClick={handleLogOut}
+            className="bg-gray-600 btn rounded px-5 py-2 font-bold text-white
         "
-        >
-          Login
-        </Link>
+          >
+            LogOut
+          </button>
+        ) : (
+          <Link
+            to="/auth/login"
+            className="bg-gray-600 btn rounded px-5 py-2 font-bold text-white
+        "
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

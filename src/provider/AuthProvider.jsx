@@ -4,7 +4,9 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth/cordova";
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
@@ -14,6 +16,13 @@ const AuthProvider = ({ children }) => {
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logOut = () => {
+    return signOut(auth);
   };
 
   useEffect(() => {
@@ -29,6 +38,8 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
     createUser,
+    logOut,
+    signIn,
   };
   return <AuthContext value={authData}>{children}</AuthContext>;
 };
