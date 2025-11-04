@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const NewsDetailsCard = ({ news }) => {
   console.log(news);
@@ -11,6 +12,9 @@ const NewsDetailsCard = ({ news }) => {
       />
       <h2 className="text-2xl font-bold">{news.title}</h2>
       <p>{news.details}</p>
+      <Link className="btn btn-secondary" to={`/category/${news.category_id}`}>
+        Back to Category
+      </Link>
     </div>
   );
 };
