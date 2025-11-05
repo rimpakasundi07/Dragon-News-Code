@@ -1,10 +1,13 @@
 import React, { use, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
-  const { createUser, setUser } = use(AuthContext);
+  const { createUser, setUser, updateUser } = use(AuthContext);
   const [nameError, setNameError] = useState("");
+
+  const navigate = useNavigate();
+
   const handleRegister = (e) => {
     e.preventDefault();
     console.log(e.target);
@@ -24,7 +27,15 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         // console.log(user);
-        setUser(user);
+        updateUser({ displayName: name, photoURL: photo })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photo });
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+            setUser(user);
+          });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -35,7 +46,7 @@ const Register = () => {
   return (
     <div className="flex justify-center  items-center">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <h2 className="font-bold lg:text-3xl pt-10 text-center ">
+        <h2 className="font-bold lg:text-3xl pt-10 text-center">
           Register your Account
         </h2>
         <form onSubmit={handleRegister} className="card-body">
